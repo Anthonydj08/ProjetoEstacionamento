@@ -33,7 +33,7 @@ class Vaga extends CI_Controller {
             redirect(base_url('inicio'));
         } else {
             $this->vaga->inserir();
-            redirect(base_url('VagaListar'));
+            redirect(base_url('inicio'));
         }
     }
 

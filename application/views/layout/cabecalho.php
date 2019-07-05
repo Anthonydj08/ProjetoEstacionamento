@@ -53,12 +53,12 @@
               <p>Veículos</p>
             </a>
           </li>
-          <li class="nav-item <?php if(basename($_SERVER['PHP_SELF']) == "VagaListar"){echo ' active';} ?> ">
+          <!-- <li class="nav-item <?php if(basename($_SERVER['PHP_SELF']) == "VagaListar"){echo ' active';} ?> ">
             <a class="nav-link" href="VagaListar">
               <i class="material-icons">local_parking</i>
               <p>Vagas</p>
             </a>
-          </li>
+          </li> -->
           <!-- your sidebar here -->
         </ul>
       </div>
