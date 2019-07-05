@@ -1,19 +1,16 @@
+<?php
+//include "$_SERVER[DOCUMENT_ROOT]/application/views/Layout/cabecalho.php";
 
+(basename($_SERVER['PHP_SELF']))
 
- <div class="pull-right">
+?>
+        <div class="pull-left">
+            <h2>Listar pessoas</h2>
+        </div>
+        <div class="pull-right">
             <a class="btn btn-success" href="<?php echo base_url('criarpessoa') ?>">Cadastrar</a>
         </div>
-        <?php
-            // foreach($pessoas as $pessoa){
-            //     echo 'Nome: ' . $pessoa->getNome();
-            //     echo ' - telefone: ' . $pessoa->getTelefone() . '<br>';
-            // }
-
-
-           
-        ?>
-
-            <table class="table table-dark">
+            <table class="table">
                 <thead>
                     <tr>
                     <th scope="col">Id</th>
@@ -22,35 +19,29 @@
                     <th scope="col">Email</th>
                     </tr>
                 </thead>
+
                 <tbody>
-                <?php
-
+                
+                <?php 
                 $i=1;
-                foreach($data as $row)
-                {
-
-                    echo "<tr>";
-                    echo "<td>".$i."</td>";
-                    echo "<td>".$row->nome."</td>";
-                    echo "<td>".$row->telefone."</td>";
-                    echo "<td>".$row->email."</td>";
-    
-                    echo "<td><a href='deletedata?id=".$row->id_pessoa."'>Delete</a></td>";
-                    echo "<td>  <button type='button' class='btn btn-outline-primary' href='deletedata?id=".$row->id_pessoa."'>Delete</button></td>";
-                    echo "<td>  <button type='button' class='btn btn-outline-primary'>Excluir</button></td>";
-                    echo "</tr>";
-                    $i++; 
-                ?>
-
+                foreach ($data as $pessoa) { ?>   
                 
+                <tr>
+                    <td><?php echo $i; ?></td>
+                    <td><?php echo $pessoa->nome ;?></td>      
+                    <td><?php echo $pessoa->telefone; ?></td>  
+                    <td><?php echo $pessoa->email; ?></td> 
 
-
-                <?php
-                }
-                ?>
+                    <td>
+                        <form method="DELETE" action="<?php echo base_url('pessoa/excluir/' . $pessoa->id_pessoa); ?>">
+                           
+                            <a class="btn btn-primary" href="<?php echo base_url('pessoa/editar/' . $pessoa->id_pessoa) ?>"> Editar</a>
+                            <button type="submit" class="btn btn-danger"> Excluir</button>
+                        </form>
+                    </td>     
+                </tr>                
                 
-                
-
+                <?php $i++; }?>
             
                 </tbody>
             </table>

@@ -16,33 +16,26 @@ class PessoaModel extends CI_Model{
         );
         return $this->db->insert('pessoa', $data);
     }
-    public function atualizar($id){
+    public function atualizar($id_pessoa){
         $data=array(
             'nome' => $this->input->post('nome'),
             'telefone' => $this->input->post('telefone'),
             'email' => $this->input->post('email')
         );
-        if($id==0){
-            return $this->db->insert('pessoa',$data);
-        }else{
-            $this->db->where('id',$id);
-            return $this->db->update('pessoa',$data);
-        }        
+        $this->db->where('id_pessoa',$id_pessoa);
+        return $this->db->update('pessoa',$data);     
     }
-    public function pesquisar($id){
-        return $this->db->get_where('pessoa', array('id' => $id))->row();
+    public function pesquisar($id_pessoa){
+        return $this->db->get_where('pessoa', array('id_pessoa' => $id_pessoa))->row();
     }
-    public function excluir($id){
-        return $this->db->delete('pessoa', array('id' => $id));
+    public function excluir($id_pessoa){
+        return $this->db->delete('pessoa', array('id_pessoa' => $id_pessoa));
     }
 
     function pessoaListar() {
 	    $query=$this->db->query("select * from pessoa");
 	    return $query->result();
     }
-    
-    function deleterecords($id_pessoa){
-        $this->db->query("delete  from pessoa where id_pessoa='".$id_pessoa."'");
-    } 
+
 }
 ?>

@@ -1,31 +1,43 @@
+<?php
+//include "$_SERVER[DOCUMENT_ROOT]/application/views/Layout/cabecalho.php";
+(basename($_SERVER['PHP_SELF']))
 
-
- <div class="pull-right">
-            <a class="btn btn-success" href="<?php echo base_url('criarVeiculo') ?>">Cadastrar</a>
+?>
+        <div class="pull-left">
+            <h2>Listar veiculos</h2>
         </div>
-
-            <table class="table table-dark">
+        <div class="pull-right">
+            <a class="btn btn-success" href="<?php echo base_url('criarveiculo') ?>">Cadastrar</a>
+        </div>
+            <table class="table">
                 <thead>
                     <tr>
-                    <th scope="col">id</th>
+                    <th scope="col">Id</th>
                     <th scope="col">Modelo</th>
                     <th scope="col">Placa</th>
                     </tr>
                 </thead>
                 <tbody>
-                <?php
-
+                
+                <?php 
                 $i=1;
-                foreach($data as $row)
-                {
-                echo "<tr>";
-                echo "<td>".$i."</td>";
-                echo "<td>".$row->modelo."</td>";
-                echo "<td>".$row->placa."</td>";
-                echo "</tr>";
-                $i++;
-                }
-            ?>
+                foreach ($data as $veiculo) { ?>   
+                
+                <tr>
+                    <td><?php echo $i; ?></td>
+                    <td><?php echo $veiculo->modelo ;?></td>      
+                    <td><?php echo $veiculo->placa; ?></td> 
+                    <td>
+                        <form method="DELETE" action="<?php echo base_url('veiculo/excluir/' . $veiculo->id_veiculo); ?>">
+                           
+                            <a class="btn btn-primary" href="<?php echo base_url('veiculo/editar/' . $veiculo->id_veiculo) ?>"> Editar</a>
+                            <button type="submit" class="btn btn-danger"> Excluir</button>
+                        </form>
+                    </td>     
+                </tr>                
+                
+                <?php $i++; } ?>
+            
                 </tbody>
             </table>
 

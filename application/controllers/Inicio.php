@@ -9,11 +9,5 @@ class Inicio extends CI_Controller
         $this->load->view('inicio/inicio');
         $this->load->view('Layout/rodape');
     }
-    public function dbtest(){
-
-        $this->load->database();
     
-        $feeds = $this->db->get('vts_feeds');
-        echo $feeds;die();
-    }
 }

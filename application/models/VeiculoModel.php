@@ -9,43 +9,37 @@ class VeiculoModel extends CI_Model{
         return $query->result();
     }
 
-    public function get_pessoa(){
-        if(!empty($this->input->get("search"))){
-          $this->db->like('nome', $this->input->get("search"));
-        }
-        $query = $this->db->get("pessoa");
-        return $query->result();
-    }
-
     public function inserir(){    
         $data = array(
             'modelo' => $this->input->post('modelo'),
-            'placa' => $this->input->post('placa')
+            'placa' => $this->input->post('placa'),
+            'id_pessoa' => $this->input->post('id_pessoa')
         );
         return $this->db->insert('veiculo', $data);
     }
-    public function atualizar($id){
+    public function atualizar($id_veiculo){
         $data=array(
             'modelo' => $this->input->post('modelo'),
-            'placa' => $this->input->post('placa')
+            'placa' => $this->input->post('placa'),
+            'id_pessoa' => $this->input->post('id_pessoa')
         );
-        if($id==0){
-            return $this->db->insert('veiculo',$data);
-        }else{
-            $this->db->where('id',$id);
-            return $this->db->update('veiculo',$data);
-        }        
+        $this->db->where('id_veiculo',$id_veiculo);
+        return $this->db->update('veiculo',$data);   
     }
-    public function pesquisar($id){
-        return $this->db->get_where('veiculo', array('id' => $id))->row();
+    public function pesquisar($id_veiculo){
+        return $this->db->get_where('veiculo', array('id_veiculo' => $id_veiculo))->row();
     }
-    public function excluir($id){
-        return $this->db->delete('veiculo', array('id' => $id));
+    public function excluir($id_veiculo){
+        return $this->db->delete('veiculo', array('id_veiculo' => $id_veiculo));
     }
     function veiculoListar() {
 	    $query=$this->db->query("select * from veiculo");
 	    return $query->result();
 	}
 
+    function pessoaListar() {
+	    $query=$this->db->query("select * from pessoa");
+	    return $query->result();
+    }
 }
 ?>
